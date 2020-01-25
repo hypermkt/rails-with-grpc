@@ -1,0 +1,12 @@
+version: '3'
+services:
+  database:
+    image: mysql:5.7
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_DATABASE: sample_development
+      MYSQL_USER: sample
+      MYSQL_PASSWORD:
+      TZ: 'Asia/Tokyo'
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
