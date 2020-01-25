@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+import "item_response.proto";
+
+message ItemsResponse {
+  repeated ItemResponse items = 1;
+}
