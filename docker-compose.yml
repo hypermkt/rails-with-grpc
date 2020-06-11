@@ -5,8 +5,6 @@ services:
     ports:
       - 3309:3306
     environment:
-      MYSQL_DATABASE: sample_development
-      MYSQL_USER: sample
-      MYSQL_PASSWORD:
       TZ: 'Asia/Tokyo'
+      MYSQL_ROOT_PASSWORD: ""
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
