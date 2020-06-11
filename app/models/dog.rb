@@ -1,3 +1,2 @@
-class Dog < ApplicationRecord
-  has_one :animal, as: :animalable
+class Dog < Animal
 end
