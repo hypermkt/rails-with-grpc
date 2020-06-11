@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_11_141705) do
+ActiveRecord::Schema.define(version: 2020_06_11_144252) do
+
+  create_table "animals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "animalable_type"
+    t.bigint "animalable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["animalable_type", "animalable_id"], name: "index_animals_on_animalable_type_and_animalable_id"
+  end
 
   create_table "cats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
