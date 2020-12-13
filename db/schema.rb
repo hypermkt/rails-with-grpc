@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2020_06_11_144252) do
 
-  create_table "animals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "animals", force: :cascade do |t|
     t.string "animalable_type"
     t.bigint "animalable_id"
     t.datetime "created_at", precision: 6, null: false
@@ -20,19 +23,19 @@ ActiveRecord::Schema.define(version: 2020_06_11_144252) do
     t.index ["animalable_type", "animalable_id"], name: "index_animals_on_animalable_type_and_animalable_id"
   end
 
-  create_table "cats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "cats", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "dogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "dogs", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.string "title"
   end
 
