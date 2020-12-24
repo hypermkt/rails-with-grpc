@@ -1,0 +1,14 @@
+{
+  "name": "rails-playground",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "ssh://git@github.com/hypermkt/rails-playground.git",
+  "license": "MIT",
+  "scripts": {
+    "validate:swagger-yml": "swagger-cli validate petstore.yml"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@apidevtools/swagger-cli": "^4.0.4"
+  }
+}

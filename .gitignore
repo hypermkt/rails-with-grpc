@@ -33,3 +33,5 @@
 .env.test
 
 /vendor/bundle/
+
+/node_modules/
