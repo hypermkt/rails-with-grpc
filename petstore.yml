@@ -32,7 +32,7 @@ paths:
           content:
             application/json:    
               schema:
-                $ref: "#/components/schemas/Pets"
+                $ref: "#/components/schemas/Pts"
         default:
           description: unexpected error
           content:
