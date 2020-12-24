@@ -23,6 +23,7 @@ jobs:
     steps:
       - yarn_install
       - run:
+        name: Run validate swagger yaml file
         command: yarn run validate:swagger-yml
 workflows:
   version: 2
