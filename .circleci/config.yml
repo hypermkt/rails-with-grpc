@@ -1,24 +1,36 @@
+version: 2.1
+executors:
+  default:
+    docker:
+      - image: circleci/node:10.18.0-buster
 commands:
-  # https://circleci.com/docs/2.0/yarn/
+  build:
+    steps:
+      - checkout
   yarn_install:
-    - restore_cache:
-      name: Restore Yarn Package Cache
-      keys:
-        - yarn-packages-{{ checksum "yarn.lock" }}
-    - run:
-      name: Install Dependencies
-      command: yarn install --immutable
-    - save_cache:
-      name: Save Yarn Package Cache
-      key: yarn-packages-{{ checksum "yarn.lock" }}
-      paths:
-        - ~/.cache/yarn
+    steps:
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --immutable
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
 jobs:
   swagger_yaml_validate:
+    executor:
+      name: default
     steps:
+      - build
       - yarn_install
       - run:
-        command: yarn run validate:swagger-yml
+          name: Run validate swagger yaml file
+          command: yarn run validate:swagger-yml
 workflows:
   version: 2
   build_and_test:
