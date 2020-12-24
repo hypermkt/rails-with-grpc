@@ -1,18 +1,19 @@
 commands:
   # https://circleci.com/docs/2.0/yarn/
   yarn_install:
-    - restore_cache:
-      name: Restore Yarn Package Cache
-      keys:
-        - yarn-packages-{{ checksum "yarn.lock" }}
-    - run:
-      name: Install Dependencies
-      command: yarn install --immutable
-    - save_cache:
-      name: Save Yarn Package Cache
-      key: yarn-packages-{{ checksum "yarn.lock" }}
-      paths:
-        - ~/.cache/yarn
+    steps:
+      - restore_cache:
+        name: Restore Yarn Package Cache
+        keys:
+          - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+        name: Install Dependencies
+        command: yarn install --immutable
+      - save_cache:
+        name: Save Yarn Package Cache
+        key: yarn-packages-{{ checksum "yarn.lock" }}
+        paths:
+          - ~/.cache/yarn
 jobs:
   swagger_yaml_validate:
     steps:
