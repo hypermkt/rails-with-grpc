@@ -20,6 +20,8 @@ commands:
           - ~/.cache/yarn
 jobs:
   swagger_yaml_validate:
+    executor:
+      name: default
     steps:
       - yarn_install
       - run:
