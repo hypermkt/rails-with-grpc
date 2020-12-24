@@ -1,3 +1,7 @@
+executors:
+  default:
+    docker:
+      - image: circleci/node:10.18.0-buster
 commands:
   # https://circleci.com/docs/2.0/yarn/
   yarn_install:
