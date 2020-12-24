@@ -4,6 +4,9 @@ executors:
     docker:
       - image: circleci/node:10.18.0-buster
 commands:
+  build:
+    steps:
+      - checkout
   yarn_install:
     steps:
       - restore_cache:
@@ -23,6 +26,7 @@ jobs:
     executor:
       name: default
     steps:
+      - build
       - yarn_install
       - run:
           name: Run validate swagger yaml file
