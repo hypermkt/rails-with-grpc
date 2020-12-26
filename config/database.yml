@@ -7,6 +7,10 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  username: <% ENV['DATABASE_USER'] %>
+  password: <% ENV['DATABASE_PASSWORD'] %>
+  database: <% ENV['DATABASE_NAME'] %>
+  host: <% ENV['DATABASE_HOST'] %>
 
 development:
   <<: *default
@@ -23,7 +27,3 @@ test:
 # refs: https://www.postgresql.jp/document/9.2/html/libpq-connect.html
 production:
   <<: *default
-  username: <% ENV['DATABASE_USER'] %>
-  password: <% ENV['DATABASE_PASSWORD'] %>
-  database: <% ENV['DATABASE_NAME'] %>
-  host: <% ENV['DATABASE_HOST'] %>
