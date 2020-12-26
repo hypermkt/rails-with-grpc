@@ -35,3 +35,6 @@
 /vendor/bundle/
 
 /node_modules/
+
+# Ignore for GAE env variables
+secret.yaml

@@ -2,9 +2,15 @@ runtime: ruby
 env: flex
 entrypoint: bundle exec rails s
 
+env_variables:
+  SECRET_KEY_BASE: 'secret key base'
+
 manual_scaling:
   instances: 1
 resources:
   cpu: 1
   memory_gb: 0.5
   disk_size_gb: 10
+
+includes:
+  - secret.yaml
