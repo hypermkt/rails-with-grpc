@@ -46,6 +46,6 @@ class ItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.fetch(:item, {})
+      params.fetch(:item, {}).permit(:name)
     end
 end
