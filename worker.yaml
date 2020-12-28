@@ -1,9 +1,9 @@
 runtime: custom
 env: flex
-entrypoint: bundle exec rackup --port $PORT
+service: worker
 
 env_variables:
-  SERVICE_TYPE: 'web'
+  SERVICE_TYPE: 'worker'
 
 manual_scaling:
   instances: 1
