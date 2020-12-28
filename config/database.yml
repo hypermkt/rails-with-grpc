@@ -7,7 +7,10 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  url: <%= ENV['DATABASE_URL']%>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
 
 development:
   <<: *default
@@ -20,6 +23,7 @@ test:
   <<: *default
   database: sample_test
 
+# Cloud SQL を使用する場合で 接続URI形式の記述方法がわからない。記法は通りにやってうまくいかないなぁ。
+# refs: https://www.postgresql.jp/document/9.2/html/libpq-connect.html
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>

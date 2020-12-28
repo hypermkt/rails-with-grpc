@@ -1,24 +1,22 @@
-# README
+# rails-playsgound
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+```
+$ bundle instlal --vendor/bundle
+$ docker-compose up -d
+```
 
-* Ruby version
+## Start
 
-* System dependencies
+```
+$ bundle exec rails s
+$ bundle exec sidekiq -C config/sidekiq.yml
+```
 
-* Configuration
+## Deploy to GCP
 
-* Database creation
+```
+$ gcloud app deploy app.yaml worker.yaml
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
