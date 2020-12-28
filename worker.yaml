@@ -13,8 +13,7 @@ resources:
   disk_size_gb: 10
 
 beta_settings:
-  # 公開リポジトリでは本当はコミットしちゃいけないけど隠す方法が全く分からない！ まぁ開発環境なので問題なし。
-  cloud_sql_instances: test-app-299803:asia-northeast1:test-app-development
+  cloud_sql_instances:
 
 includes:
   - secret.yaml
