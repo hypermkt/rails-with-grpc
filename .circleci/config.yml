@@ -3,9 +3,16 @@ executors:
   node:
     docker:
       - image: circleci/node:10.18.0-buster
-  ruby:
+  ruby-postgres:
     docker:
       - image: circleci/ruby:2.6.6
+        environment:
+          RAILS_ENV: test
+      - image: circleci/postgres:10
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: sample_development
 commands:
   build:
     steps:
@@ -48,7 +55,7 @@ jobs:
           command: yarn run validate:swagger-yml
   rspec:
     executor:
-      name: ruby
+      name: ruby-postgres
     steps:
       - build
       - run: gem install bundler:2.2.3
