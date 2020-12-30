@@ -1,8 +1,21 @@
 version: 2.1
 executors:
-  default:
+  node:
     docker:
       - image: circleci/node:10.18.0-buster
+  ruby-postgres:
+    docker:
+      - image: circleci/ruby:2.6.6
+        environment:
+          RAILS_ENV: test
+          DATABASE_USER: test
+          DATABASE_NAME: sample_test
+          DATABASE_HOST: 127.0.0.1
+      - image: circleci/postgres:10
+        environment:
+          POSTGRES_USER: test
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: sample_test
 commands:
   build:
     steps:
@@ -21,18 +34,46 @@ commands:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+  bundle_install:
+    steps:
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+            - gem-cache-v1
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
 jobs:
   swagger_yaml_validate:
     executor:
-      name: default
+      name: node
     steps:
       - build
       - yarn_install
       - run:
           name: Run validate swagger yaml file
           command: yarn run validate:swagger-yml
+  rspec:
+    executor:
+      name: ruby-postgres
+    steps:
+      - build
+      - run: gem install bundler:2.2.3
+      - bundle_install
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rails db:create
+            bundle exec rails db:migrate
+      - run:
+          name: Run RSpec
+          command: bundle exec rspec
 workflows:
   version: 2
   build_and_test:
     jobs:
       - swagger_yaml_validate
+      - rspec
