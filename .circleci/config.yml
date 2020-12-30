@@ -8,11 +8,14 @@ executors:
       - image: circleci/ruby:2.6.6
         environment:
           RAILS_ENV: test
+          DATABASE_USER: test
+          DATABASE_NAME: sample_test
+          DATABASE_HOST: 127.0.0.1
       - image: circleci/postgres:10
         environment:
-          POSTGRES_USER: root
+          POSTGRES_USER: test
           POSTGRES_HOST_AUTH_METHOD: trust
-          POSTGRES_DB: sample_development
+          POSTGRES_DB: sample_test
 commands:
   build:
     steps:
@@ -60,6 +63,11 @@ jobs:
       - build
       - run: gem install bundler:2.2.3
       - bundle_install
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rails db:create
+            bundle exec rails db:migrate
       - run:
           name: Run RSpec
           command: bundle exec rspec
