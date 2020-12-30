@@ -10,7 +10,6 @@ commands:
   build:
     steps:
       - checkout
-      - run: gem install bundler:2.2.3
   yarn_install:
     steps:
       - restore_cache:
@@ -52,6 +51,7 @@ jobs:
       name: ruby
     steps:
       - build
+      - run: gem install bundler:2.2.3
       - bundle_install
       - run:
           name: Run RSpec
