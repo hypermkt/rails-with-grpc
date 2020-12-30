@@ -1,6 +1,6 @@
 version: 2.1
 executors:
-  default:
+  node:
     docker:
       - image: circleci/node:10.18.0-buster
 commands:
@@ -24,7 +24,7 @@ commands:
 jobs:
   swagger_yaml_validate:
     executor:
-      name: default
+      name: node
     steps:
       - build
       - yarn_install
