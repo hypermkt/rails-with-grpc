@@ -13,7 +13,7 @@ class Api::V1::ItemsController < ApplicationController
   def build_item_message(item)
     ::ItemResponse.new(
       id: item.id,
-      title: item.title
+      name: item.name
     )
   end
 end

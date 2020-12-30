@@ -7,7 +7,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("item_response.proto", :syntax => :proto3) do
     add_message "ItemResponse" do
       optional :id, :int64, 1
-      optional :title, :string, 2
+      optional :name, :string, 2
     end
   end
 end
