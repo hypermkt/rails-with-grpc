@@ -2,5 +2,5 @@ syntax = "proto3";
 
 message ItemResponse {
     int64 id = 1;
-    string title = 2;
+    string name = 2;
 }
