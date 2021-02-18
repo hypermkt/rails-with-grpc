@@ -46,6 +46,13 @@ commands:
           key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+  push_tag_to_github:
+    - steps:
+        - checkout
+        - run:
+            - TAG="release-"$(date +%Y%m%d%H%M)
+            - git tag $TAG
+            - git push origin $TAG
 jobs:
   swagger_yaml_validate:
     executor:
@@ -77,3 +84,9 @@ workflows:
     jobs:
       - swagger_yaml_validate
       - rspec
+  push_tag_to_github:
+    jobs:
+      - push_tag_to_github
+        filters:
+          branches:
+            only: master
