@@ -16,5 +16,6 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
+          default_bump: false
           custom_tag: ${{ENV.date}}
           tag_prefix: release-
