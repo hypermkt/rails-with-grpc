@@ -1,0 +1,19 @@
+name: create tag and push
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d%H%M')"
+      - name: add tag
+        uses: mathieudutour/github-tag-action@v5.2
+       withenv:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          custom_tag: release-${{steps.date.output.date}}
