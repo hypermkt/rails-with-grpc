@@ -65,7 +65,7 @@ GEM
     appengine (0.6.0)
       google-cloud-env (~> 1.4)
       stackdriver (~> 0.20, >= 0.20.1)
-    bootsnap (1.7.3)
+    bootsnap (1.7.4)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
